@@ -802,11 +802,12 @@
             let id = e.target.parentNode.id
             let obj = windows[id]
             let body = document.getElementById(id);
+            let container  = document.querySelector('.col-right');
             let body1 = document.documentElement
             let scroll = body1.scrollTop;
             body.removeEventListener('mousedown', octo.mouseDown)
             body.removeEventListener('mouseup', octo.mouseUp)
-            body.removeEventListener('mouseup', octo.mouseUpremove)
+           body.removeEventListener('mouseup', octo.mouseUpremove)
             body.style.display = 'none'
             let divWrite = document.createElement('div')
             divWrite.style.width = '400px';
@@ -1090,45 +1091,52 @@
             newTimer.addEventListener('click', view.newTimer);
             let windows = octo.getWindows();
             let container  = document.querySelector('.col-right');
-            container.addEventListener('mousedown', function(e){
-                if(e.target.className === 'widgetHelp'){
-                    // e.target.addEventListener('mousedown', octo.mouseDown);
-                    console.log(e.target)
-                    octo.mouseDown(e);
-                }
-                // console.log(e.target)
-            })
+            // container.addEventListener('mousedown', function(e){
+            //     if(e.target.className === 'widgetHelp'){
+            //         // e.target.addEventListener('mousedown', octo.mouseDown);
+            //         // console.log(e.target)
+            //         octo.mouseDown(e);
+            //     }
+            //     // console.log(e.target)
+            // })
 
-            container.addEventListener('dblclick', function(e){
-                if(e.target.className === 'widgetHelp'){
-                    // e.target.addEventListener('mousedown', octo.mouseDown);
-                    console.log(e.target)
-                    octo.clickNote(e);
-                }
-                // console.log(e.target)
-            })
+            // container.addEventListener('dblclick', function(e){
+            //     if(e.target.className === 'widgetHelp'){
+            //         // e.target.addEventListener('mousedown', octo.mouseDown);
+            //         // console.log(e.target)
+            //         octo.clickNote(e);
+            //     }
+            //     // console.log(e.target)
+            // })
 
-            container.addEventListener('mouseover', function(e){
+            // container.addEventListener('mouseover', function(e){
                 
-                if(e.target.className === 'widgetHelp' || e.target.className === 'tools'){
-                    console.log(e)
-                    let tool = document.getElementById(e.target.id).childNodes[3].firstChild;
-                    // e.target.addEventListener('mousedown', octo.mouseDown);
-                    tool.className = 'tools1'
-                }
-                // console.log(e.target)
-            })
-            container.addEventListener('mouseout', function(e){
-                if(e.target.className === 'widgetHelp'){
-                    let tool = document.getElementById(e.target.id).childNodes[3].firstChild;
-                    console.log(e.target.id)
+            //     if(e.target.className === 'widgetHelp' || e.target.className === 'tools'){
+            //         // console.log(e)
+            //         let tool = document.getElementById(e.target.id).childNodes[3].firstChild;
+            //         // e.target.addEventListener('mousedown', octo.mouseDown);
+            //         tool.className = 'tools1'
+            //     }else if(e.target.className === 'col-right'){
+            //         let tool = document.querySelectorAll('.tools1');
+            //         // console.log(e.target.id)
                     
-                    // e.target.addEventListener('mousedown', octo.mouseDown);
-                    tool.className = 'tools'
-                    octo.mouseUpremove(e.target)
-                }
-                // console.log(e.target)
-            })
+            //         // e.target.addEventListener('mousedown', octo.mouseDown);
+            //         for(too of tool){
+            //             too.className = 'tools'
+            //         }
+            //         octo.mouseUpremove(e.target)
+            //     }
+            //     // console.log(e.target)
+            // })
+
+            // container.addEventListener('mouseup', function (e){
+            //     if(e.target.className === 'widgetHelp'){
+            //         // console.log(e.target.parentNode)
+            //         return octo.mouseUp(e.target.parentNode)
+
+            //     }
+            // })
+            
 
             for (let windowNote of windows) {
                 let key = Object.keys(windowNote)
@@ -1136,19 +1144,19 @@
                 elem.style.left = windowNote[key].left + 'px';
                 elem.style.top = windowNote[key].top + 'px';
                 elem.style.backgroundColor = 'rgb(' + windowNote[key].backgroundColor.r + ',' + windowNote[key].backgroundColor.g + ',' + windowNote[key].backgroundColor.b + ')';
-                // elem.addEventListener('mousedown', octo.mouseDown);
-                // elem.addEventListener('dblclick', octo.clickNote);
+                elem.addEventListener('mousedown', octo.mouseDown);
+                elem.addEventListener('dblclick', octo.clickNote);
 
                 let tool = elem.childNodes[3].firstChild;
                 let icon1 = tool.firstChild;
-                // elem.addEventListener('mouseover', function () {
-                //     tool.className = 'tools1'
-                //     //elem.className = 'widget1'
-                // })
-                // elem.addEventListener('mouseout', function () {
-                //     tool.className = 'tools'
-                //     octo.mouseUpremove(elem)
-                // })
+                elem.addEventListener('mouseover', function () {
+                    tool.className = 'tools1'
+                    //elem.className = 'widget1'
+                })
+                elem.addEventListener('mouseout', function () {
+                    tool.className = 'tools'
+                    octo.mouseUpremove(elem)
+                })
                 elem.addEventListener('mouseup', function () {
                     return octo.mouseUp(elem)
                 })
@@ -1330,6 +1338,7 @@
 
         },
         stopRender: function () {
+            interval = this.render()
             clearInterval(interval)
         }
     }
