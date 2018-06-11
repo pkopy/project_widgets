@@ -94,7 +94,7 @@ body{
 }
 #palette{
     position: fixed;
-    height: 100px;
+    height: 80px;
     width: 155px;
     display: none;
     background-color: #e8e8e8;
@@ -133,14 +133,14 @@ body{
 }
 #yellow{
     background-color: rgb(253, 253, 0);
-    left: 50px;
-    top: 50px;
+    left: 0;
+    top: 1.5em;
     
 }
 #pink{
     background-color: pink;
-    left: 100px;
-    top: 50px;
+    left: 1.5em;
+    top: 1.5em;
 }
 #headText{
     position: absolute;
